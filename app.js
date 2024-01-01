@@ -65,7 +65,7 @@ boxes.forEach((boxx) => {
     }
     boxx.disabled = true;
 
-    checkWinner();
+    checkForWinner();
     count++; // Increment count after each move
 
     if (count === 9) {
@@ -102,11 +102,11 @@ const noWinner = () => {
   resetBtn.classList.add("hide-reset");
 };
 
-const checkWinner = () => {
-  if (!checkForWinner()) {
+// const checkWinner = () => {
+//   if (!checkForWinner()) {
     
-  }
-};
+//   }
+// };
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
