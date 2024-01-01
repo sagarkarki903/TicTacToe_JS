@@ -1,5 +1,10 @@
 let boxes = document.querySelectorAll(".box");
-let resetBtn = document.querySelectorAll("#reset");
+let resetBtn = document.querySelector("#reset-btn");
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+
+resetBtn.classList.remove("hide-reset");
 
 let turnO= true; //if true then O, if false then X
 
@@ -15,18 +20,77 @@ const winPatterns = [
     [6, 7, 8]
 ];
 
-boxes.forEach((box) => {
-    box.addEventListener("click", ()=>{
+const resetGame = ()=> {
+    turnO = true;
+    enableBoxes();
+    msgContainer.classList.add("hide");
+    resetBtn.classList.remove("hide-reset");
+
+    };
+
+boxes.forEach((boxx) => {
+    boxx.addEventListener("click", ()=>{
         console.log("box was clicked!");
+        
         if(turnO){
-            box.innerText = "O";
+            boxx.innerText = "O";
             turnO = false;
         }
         else{
-            box.innerText = "X";
+            boxx.innerText = "X";
             turnO = true;
         }
+        boxx.disabled = true;
+
+        // if(box.innerText === "O"){
+        //     box.innerText.
+
+        // }
+
+        checkWinner();
     });
 }
 
 );
+const enableBoxes = () => { 
+    for(let box of boxes){
+        box.disabled =false;
+        box.innerText = "";
+    }
+};
+
+const disableBoxes = () => { 
+    for(let box of boxes){
+        box.disabled =true;
+    }
+};
+
+const showWinner = (winner)=> {
+    msg.innerText = `Congratulations, Winner is ${winner}`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+    resetBtn.classList.add("hide-reset");
+};
+
+const checkWinner = () => {
+    for(let pattern of winPatterns){
+            let pos1Val = boxes[pattern[0]].innerText;
+            let pos2Va1 =  boxes[pattern[1]].innerText;
+            let pos3Val =  boxes[pattern[2]].innerText;
+    
+
+    if(pos1Val != "" && pos2Va1 != ""  && pos3Val != ""){
+        if(pos1Val === pos2Va1 && pos2Va1 === pos3Val){
+            console.log("WINNER!", pos1Val);
+            showWinner(pos1Val);
+            break;
+
+        }
+    }
+}
+    
+};
+
+
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
