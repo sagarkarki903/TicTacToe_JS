@@ -102,11 +102,7 @@ const noWinner = () => {
   resetBtn.classList.add("hide-reset");
 };
 
-// const checkWinner = () => {
-//   if (!checkForWinner()) {
-    
-//   }
-// };
+
 
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
