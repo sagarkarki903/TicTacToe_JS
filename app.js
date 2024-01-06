@@ -3,8 +3,10 @@ let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
-
 resetBtn.classList.remove("hide-reset");
+
+let headd = document.querySelector(".heading");
+headd.classList.remove("heading");
 
 let turnO = true; // if true then O, if false then X
 
@@ -25,6 +27,9 @@ const resetGame = () => {
   enableBoxes();
   msgContainer.classList.add("hide");
   resetBtn.classList.remove("hide-reset");
+  headd.classList.remove("heading");
+
+  
   count = 0; // Resets count when starting a new game
 };
 
@@ -93,6 +98,7 @@ const showWinner = (winner) => {
   msgContainer.classList.remove("hide");
   disableBoxes();
   resetBtn.classList.add("hide-reset");
+  headd.classList.add("heading");
 };
 
 const noWinner = () => {
@@ -100,6 +106,7 @@ const noWinner = () => {
   msgContainer.classList.remove("hide");
   disableBoxes();
   resetBtn.classList.add("hide-reset");
+  headd.classList.add("heading");
 };
 
 
